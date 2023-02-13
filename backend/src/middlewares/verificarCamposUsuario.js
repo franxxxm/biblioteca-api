@@ -1,4 +1,4 @@
-const verificar = async (req, res, next)=>{
+const verificarCampos = async (req, res, next)=>{
     const usuario = req.body;
     const vazios = [];
 
@@ -16,4 +16,6 @@ const verificar = async (req, res, next)=>{
     next();
 }
 
-module.exports = {verificar}
+module.exports = {
+    verificarCampos
+}

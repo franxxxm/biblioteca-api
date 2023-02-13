@@ -4,10 +4,10 @@ const express = require('express')
 const router = express.Router()
 
 
-router.post("/livro", middlewares.verificar, LivroControllers.createLivro)
+router.post("/livro", middlewares.verificarCampos , LivroControllers.createLivro)
 router.get("/livro", LivroControllers.getAllLivro)
 router.delete("/livro/:id", LivroControllers.deleteLivro)
-router.put("/livro/:id", middlewares.verificar,  LivroControllers.setLivro);
+router.put("/livro/:id", middlewares.verificarCampos,  LivroControllers.setLivro);
 
 
 module.exports = router;

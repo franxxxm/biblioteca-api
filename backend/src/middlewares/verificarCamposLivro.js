@@ -1,4 +1,4 @@
-const verificar = (req, res, next)=>{
+const verificarCampos = (req, res, next)=>{
     const {body}  = req
     const vazios = [];
     for (const key in body) {
@@ -15,5 +15,5 @@ const verificar = (req, res, next)=>{
 
 
 module.exports = {
-    verificar
+    verificarCampos
 }

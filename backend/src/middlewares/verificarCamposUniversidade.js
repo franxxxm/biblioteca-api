@@ -1,4 +1,4 @@
-const verificar = (req, res, next)=>{
+const verificarCampos = (req, res, next)=>{
     const body = req.body;
     const vazios = [];
 
@@ -17,5 +17,5 @@ const verificar = (req, res, next)=>{
 }
 
 module.exports = {
-    verificar
+    verificarCampos
 }
