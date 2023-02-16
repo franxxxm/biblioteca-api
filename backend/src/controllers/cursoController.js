@@ -10,13 +10,13 @@ const createCurso = async (req, res)=>{
 const getAllCurso = async (req, res)=>{
     const curso = await CursoModels.getAllCurso();
 
-    return res.status(200).json({mensagem:true});
+    return res.status(200).json(curso);
 }
 
 const getIdCurso = async (req, res)=>{
     const curso = await CursoModels.getAllCurso(req.params.id);
 
-    return res.status(200).json({mensagem:true})
+    return res.status(200).json(curso)
 }
 
 const deleteCurso = async (req, res)=>{
@@ -26,7 +26,7 @@ const deleteCurso = async (req, res)=>{
 }
 
 const setCurso = async (req, res)=>{
-    const curso = await CursoModels.setCurso(req.params.id)
+    const curso = await CursoModels.setCurso(req.params.id, req.body.nome)
 
     return res.status(200).json({mensagem:true})
 }

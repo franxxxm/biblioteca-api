@@ -3,7 +3,7 @@ const bd = require("./bd");
 
 
 const createCurso = async (nome, idUnivesidade)=>{
-    const sql = `INSERT INTO cursos(nome, idUnivesidade) VALUES('${nome}', '${idUnivesidade}')`
+    const sql = `INSERT INTO cursos(nome, idUniversidade) VALUES('${nome}', '${idUnivesidade}')`
     const curso = await bd.query(sql);
     
     return curso;
@@ -32,8 +32,8 @@ const deleteCurso = async(id)=>{
 }
 
 const setCurso = async(id, nome)=>{
-    const sql = `UPDATE curso SET nome = '${nome}' WHERE id = '${id}'`
-    const curso = bd.quey(sql);
+    const sql = `UPDATE cursos SET nome = '${nome}' WHERE id = '${id}'`
+    const curso = bd.query(sql);
 
     return curso
 }
