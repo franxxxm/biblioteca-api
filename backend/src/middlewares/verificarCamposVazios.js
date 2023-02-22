@@ -14,3 +14,5 @@ const verificar = (req, res, next)=>{
     }
     next();
 }
+
+module.exports = verificar;

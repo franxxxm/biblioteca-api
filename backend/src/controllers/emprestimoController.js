@@ -15,7 +15,7 @@ const modelsEmprestimo = require("../models/emprestimoModels");
  const getIdEmprestimo = async (req, res)=>{
     const emprestimo = await modelsEmprestimo.getIdEmprestimo(req.params.id);
 
-    return res.status(200).json({mensagem:true})
+    return res.status(200).json(emprestimo)
  }
 
  const deleteEmprestimo = async (req, res)=>{
@@ -25,7 +25,7 @@ const modelsEmprestimo = require("../models/emprestimoModels");
  }
 
  const setEmprestimo = async(req, res)=>{
-   const emprestimo = await modelsEmprestimo.setEmprestimo(req.params.id);
+   const emprestimo = await modelsEmprestimo.setEmprestimo(req.params.id,req.body);
 
 
    return res.status(200).json({mensagem:true});

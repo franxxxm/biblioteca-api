@@ -10,7 +10,7 @@ const createEmprestimo = async ({idLivro1, idLivro2, idLivro3, idUser, idAdmEmp,
 }
 
 const getAllEmprestimo = async()=>{
-    const sql = `SELECT FROM emprestimos`;
+    const sql = `SELECT * FROM emprestimos`;
     const [emprestimo] = await bd.query(sql)
 
     return emprestimo
@@ -18,7 +18,7 @@ const getAllEmprestimo = async()=>{
 
 
 const getIdEmprestimo = async(id)=>{
-    const sql = `SELECT FROM emprestimos WHERE id = '${id}'`    
+    const sql = `SELECT * FROM emprestimos WHERE id = '${id}'`    
     const [emprestimo] = await bd.query(sql);
 
     return emprestimo
@@ -33,7 +33,7 @@ const deleteEmprestimo = async(id)=>{
 
 const setEmprestimo = async(id, {idLivro1, idLivro2, idLivro3, idUser, idAdmEmp, idAdmDev, dataEmp, dataDev})=>{
     const sql = `UPDATE emprestimos SET  idLivro1 = '${idLivro1}', idLivro2 = '${idLivro2}', idLivro3 = '${idLivro3}', idUser = '${idUser}', idAdmEmp = '${idAdmEmp}', idAdmDev = '${idAdmDev}', dataEmp = '${dataEmp}', dataDev = '${dataDev}'`
-    const emprestimo = await bd.query(emprestimo);
+    const emprestimo = await bd.query(sql);
 
     return emprestimo
 }
