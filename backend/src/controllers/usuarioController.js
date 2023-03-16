@@ -37,7 +37,7 @@ const setUsuario = async (req, res)=>{
 const login = async (req, res)=>{
     const dados = await modelsUsuario.login(req.body);
 
-    if(dados == false) return res.status(401).json({mensagem:false});
+    if(dados == false) return res.status(401).json({mensagem:false, erro:'email'});
 
     bcrypt.compare(dados.senhaUser, dados.senha, function(err, result){
        if(result){
@@ -47,11 +47,11 @@ const login = async (req, res)=>{
             }
         const segredo = '349ur309r039ir93i'
         const token = jwt.sign(info, segredo, {expiresIn:'1h'});
-        return res.status(200).header('Authorization', `Bearer ${token}`).json({mensagem:true})
+        return res.status(200).json({token:token})
 
        }
 
-       return res.status(401).json({mensagem:false});
+       return res.status(401).json({mensagem:false, erro:'senha'});
     })
     
     }

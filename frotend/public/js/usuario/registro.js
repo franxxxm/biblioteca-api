@@ -3,8 +3,7 @@ const form = document.getElementById("form");
 
   form.addEventListener("submit", async (e)=>{
     e.preventDefault();
-    const idForReset = ['nome', 'email','senha','confirmar-senha', 'cpf', 'cep','rua','bairro', 'cidade', 'uf', 'fone1', 'fone2', 'fone3', 'observacao']
- 
+
     const load = document.getElementById("reload");
     const caixa = document.getElementById("caixa-registro");
 
@@ -63,19 +62,10 @@ const form = document.getElementById("form");
 
     load.style.display = 'none'
     caixa.style.display = 'block';
-    console.log(response)
-    if(response.mensagem){
-      var reset
-      const tipoUser = document.getElementById("tipo-user");
-      const idCurso = document.getElementById("id-curso");
 
-      tipoUser.selectedIndex = 0;
-      idCurso.selectedIndex = 0;
+    if(response.mensagem){
    
-      idForReset.forEach(element => {
-      reset = document.getElementById(element)
-      reset.value = "";
-        });
+      form.reset();
            return alertaSucesso('Usuário cadastrado com sucesso')
       }
     return alertaErro('Esse email já se encontra registrado')
@@ -94,4 +84,75 @@ const form = document.getElementById("form");
     const sucesso = document.getElementById('sucesso');
 
     sucesso.innerHTML = ` <div class="alert alert-success alert-dismissible fade show" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> ${mensagem}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+  }
+
+  var cep = document.getElementById('cep');
+  var cpf = document.getElementById('cpf');
+  var tel1 = document.getElementById('fone1');
+  var tel2 = document.getElementById('fone2');
+  var tel3 = document.getElementById('fone3');
+
+  cep.addEventListener("keyup", formatarCep);
+  cpf.addEventListener("keyup", formatarCpf);
+  tel1.addEventListener("keyup", formatarTel1);
+  tel2.addEventListener("keyup", formatarTel2);
+  tel3.addEventListener("keyup", formatarTel3);
+
+
+
+  function formatarTel1(){
+      var valor = tel1.value;
+
+      var v = valor.replace(/\D/g,"");
+      v = v.replace(/^(\d\d)(\d)/g,"($1)$2"); 
+      v = v.replace(/(\d{5})(\d)/,"$1-$2");  
+
+      tel1.value = v;
+    
+  }
+
+  function formatarTel2(){
+      var valor = tel2.value;
+
+      var v = valor.replace(/\D/g,"");
+      v = v.replace(/^(\d\d)(\d)/g,"($1)$2"); 
+      v = v.replace(/(\d{5})(\d)/,"$1-$2");  
+
+      tel2.value = v;
+    
+  }
+
+  function formatarTel3(){
+      var valor = tel3.value;
+
+      var v = valor.replace(/\D/g,"");
+      v = v.replace(/^(\d\d)(\d)/g,"($1)$2"); 
+      v = v.replace(/(\d{5})(\d)/,"$1-$2");  
+
+      tel3.value = v;
+    
+  }
+
+  function formatarCpf(){
+      var valor = cpf.value;
+      var v= valor.replace(/\D/g,"");
+      v = v.replace(/(\d{3})(\d)/,"$1.$2");
+      v = v.replace(/(\d{3})(\d)/,"$1.$2");
+      v = v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+      cpf.value = v;
+
+  }
+
+  function formatarCep(){   
+
+      var valor = cep.value;
+      var v = valor.replace(/\D/g,"")                
+      v = v.replace(/^(\d{5})(\d)/,"$1-$2") 
+      cep.value = v;
+
+      
+      if(cpf.value.legth > 8 ){
+          cep.value = valor.substring(8, valor.legth - 1 );
+          
+      }
   }
